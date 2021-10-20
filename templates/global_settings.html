@@ -61,6 +61,12 @@ Global Settings
                                     name="config_file_path" placeholder="E.g. /etc/wireguard/wg0.conf"
                                     value="{{ .globalSettings.ConfigFilePath }}">
                             </div>
+                            <div class="form-group">
+                                <label for="client_file_name">Client Config File Name</label>
+                                <input type="text" class="form-control" id="client_file_name"
+                                    name="client_file_name" placeholder="E.g. wg0.conf"
+                                    value="{{ .globalSettings.ClientFileName }}">
+                            </div>
                         </div>
                         <!-- /.card-body -->
 
@@ -111,7 +117,8 @@ Global Settings
             const mtu = $("#mtu").val();
             const persistent_keepalive = $("#persistent_keepalive").val();
             const config_file_path = $("#config_file_path").val();
-            const data = {"endpoint_address": endpoint_address, "dns_servers": dns_servers, "mtu": mtu, "persistent_keepalive": persistent_keepalive, "config_file_path": config_file_path};
+            const client_file_name = $("#client_file_name").val();
+            const data = {"endpoint_address": endpoint_address, "dns_servers": dns_servers, "mtu": mtu, "persistent_keepalive": persistent_keepalive, "config_file_path": config_file_path, "client_file_name": client_file_name};
 
             $.ajax({
                 cache: false,
@@ -182,6 +189,9 @@ Global Settings
                     },
                     config_file_path: {
                         required: true
+                    },
+                    client_file_name: {
+                        required: true
                     }
                 },
                 messages: {
@@ -196,6 +206,9 @@ Global Settings
                     },
                     config_file_path: {
                         required: "Please enter WireGuard config file path"
+                    },
+                    client_file_name: {
+                        required: "Please enter file name for client download. On Windows this represents the Tunnel name."
                     }
                 },
                 errorElement: 'span',

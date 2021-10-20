@@ -88,6 +88,7 @@ func (o *JsonDB) Init() error {
 		globalSetting.PersistentKeepalive = util.DefaultPersistentKeepalive
 		globalSetting.ConfigFilePath = util.DefaultConfigFilePath
 		globalSetting.UpdatedAt = time.Now().UTC()
+		globalSetting.ClientFileName = util.DefaultClientFileName
 		o.conn.Write("server", "global_settings", globalSetting)
 	}
 
